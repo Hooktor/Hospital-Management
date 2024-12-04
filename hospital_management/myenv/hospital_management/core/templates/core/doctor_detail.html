@@ -1,0 +1,7 @@
+{% extends "base.html" %} {% block content %}
+<h1>{{ form.instance.pk|yesno:"Edit Doctor,Add New Doctor" }}</h1>
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+<a href="{% url 'doctor_list' %}">Back to Doctor List</a> {% endblock %}

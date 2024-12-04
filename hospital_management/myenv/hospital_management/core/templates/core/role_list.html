@@ -1,0 +1,8 @@
+{% extends "base.html" %} {% block content %}
+<h1>Roles</h1>
+<ul>
+  {% for role in roles %}
+  <li><a href="{% url 'role_detail' role.id %}">{{ role.name }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

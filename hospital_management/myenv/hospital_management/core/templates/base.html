@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Hospital Management System{% endblock %}</title>
+    <style>
+      /* General Page Styles */
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        /* Light mode background */
+        color: #333333;
+        /* Light mode text */
+        transition: background-color 0.3s, color 0.3s;
+        /* Smooth transition for night mode */
+      }
+      /* Night Mode Styles */
+
+      body.night-mode {
+        background-color: #121212;
+        /* Dark mode background */
+        color: #e0e0e0;
+        /* Dark mode text */
+      }
+      /* Header */
+
+      header {
+        background-color: #009688;
+        /* Teal theme for header */
+        color: #ffffff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      header h1 {
+        font-size: 24px;
+        margin: 0;
+      }
+
+      header .night-mode-toggle {
+        cursor: pointer;
+        padding: 5px 10px;
+        border: none;
+        background-color: #ffffff;
+        color: #009688;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: background-color 0.2s, color 0.2s;
+      }
+
+      header .night-mode-toggle:hover {
+        background-color: #00796b;
+        color: #ffffff;
+      }
+      /* Container */
+
+      .container {
+        width: 80%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        /* Light mode container */
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+      }
+
+      body.night-mode .container {
+        background-color: #1e1e1e;
+        /* Dark mode container */
+      }
+      /* Buttons */
+
+      button,
+      a.btn {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 5px 0;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+        color: #ffffff;
+        background-color: #009688;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      button:hover,
+      a.btn:hover {
+        background-color: #00796b;
+      }
+
+      button.btn-danger,
+      a.btn-danger {
+        background-color: #cc0000;
+      }
+
+      button.btn-danger:hover,
+      a.btn-danger:hover {
+        background-color: #b30000;
+      }
+
+      button.btn-secondary,
+      a.btn-secondary {
+        background-color: #888888;
+      }
+
+      button.btn-secondary:hover,
+      a.btn-secondary:hover {
+        background-color: #666666;
+      }
+      /* Table Styles */
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      table th,
+      table td {
+        padding: 10px 15px;
+        border: 1px solid #dddddd;
+        text-align: left;
+      }
+
+      table th {
+        background-color: #009688;
+        color: #ffffff;
+      }
+
+      body.night-mode table th {
+        background-color: #00796b;
+      }
+
+      table tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      body.night-mode table tr:nth-child(even) {
+        background-color: #2e2e2e;
+      }
+      /* Forms */
+
+      form {
+        margin: 20px 0;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      form input,
+      form select,
+      form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #dddddd;
+        border-radius: 5px;
+        background-color: #ffffff;
+        transition: background-color 0.3s;
+      }
+
+      body.night-mode form input,
+      body.night-mode form select,
+      body.night-mode form textarea {
+        background-color: #2e2e2e;
+        color: #e0e0e0;
+      }
+      /* Footer */
+
+      footer {
+        background-color: #009688;
+        color: #ffffff;
+        text-align: center;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+    <script>
+      // Toggle Night Mode
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.querySelector(".night-mode-toggle");
+        toggle.addEventListener("click", () => {
+          document.body.classList.toggle("night-mode");
+          localStorage.setItem(
+            "nightMode",
+            document.body.classList.contains("night-mode")
+          );
+        });
+
+        // Set night mode based on saved preference
+        if (localStorage.getItem("nightMode") === "true") {
+          document.body.classList.add("night-mode");
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Hospital Management</h1>
+      <button class="night-mode-toggle">Toggle Night Mode</button>
+    </header>
+    <div class="container">{% block content %} {% endblock %}</div>
+    <footer>&copy; 2024 Hospital Management System</footer>
+  </body>
+</html>

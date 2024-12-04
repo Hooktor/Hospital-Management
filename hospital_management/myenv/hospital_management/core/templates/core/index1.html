@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+<h1>Welcome to the Hospital Management System</h1>
+{% if user.is_authenticated %} {% if is_doctor %}
+<a href="{% url 'patient_list' %}">Manage Patients</a>
+<a href="{% url 'medical_record_list' %}">Manage Medical Records</a>
+<a href="{% url 'appointment_list' %}">Manage Appointments</a> {% elif
+is_patient %}
+<a href="{% url 'medical_record_list' %}">View Medical Records</a>
+<a href="{% url 'appointment_list' %}">View Appointments</a> {% elif
+user.is_staff %} <a href="{% url 'dashboard' %}">Dashboard</a> {% endif %}
+<form method="post" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <button type="submit">Logout</button>
+</form>
+{% else %}
+<a href="{% url 'login' %}">Login</a> {% endif %} {% endblock %}

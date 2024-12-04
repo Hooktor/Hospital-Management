@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% block content %}
+<h1>{{ role.name }}</h1>
+<h2>Assigned Users</h2>
+<ul>
+  {% for user in users %}
+  <li>{{ user.username }}</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'role_assign' role.id %}" class="btn btn-primary"
+  >Assign Users</a
+>
+{% endblock %}

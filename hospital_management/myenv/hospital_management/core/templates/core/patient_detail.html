@@ -1,0 +1,8 @@
+{% extends "base.html" %} {% block content %}
+<h1>Patient Detail</h1>
+<p>Name: {{ patient.name }}</p>
+<p>Date of Birth: {{ patient.dob }}</p>
+<p>Address: {{ patient.address }}</p>
+<p>Contact Number: {{ patient.contact_number }}</p>
+<p>Emergency Contact: {{ patient.emergency_contact }}</p>
+<a href="{% url 'patient_list' %}">Back to Patient List</a> {% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block content %}
+<h1>Appointment List</h1>
+<a href="{% url 'appointment_create' %}">Add New Appointment</a>
+<ul>
+  {% for appointment in appointments %}
+  <li>
+    <a href="{% url 'appointment_detail' appointment.appointment_id %}"
+      >{{ appointment.patient.name }} - {{ appointment.appointment_date }}</a
+    >
+    <a href="{% url 'appointment_update' appointment.appointment_id %}">Edit</a>
+    <a href="{% url 'appointment_delete' appointment.appointment_id %}"
+      >Delete</a
+    >
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
